@@ -18,7 +18,11 @@ struct SolarTimeWebService: Apodini.WebService {
         }
 
         func handle() -> Date? {
-            let solarTime = SolarTime(latitude: Angle(value: latitude, unit: .degrees), longitude: Angle(value: longitude, unit: .degrees), for: date ?? Date())
+            let solarTime = SolarTime(
+                latitude: Angle(value: latitude, unit: .degrees), 
+                longitude: Angle(value: longitude, unit: .degrees), 
+                for: date ?? Date()
+            )
 
             switch event {
             case .sunrise:
