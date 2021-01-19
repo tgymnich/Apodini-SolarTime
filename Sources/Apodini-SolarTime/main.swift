@@ -33,7 +33,7 @@ struct SolarTimeWebService: Apodini.WebService {
 
     struct SolarDateLocation: Handler {
         @Parameter var location: String
-        @Parameter var date: Date?
+        @Parameter var time: Date?
         var event: Event
 
         enum Event {
@@ -55,7 +55,7 @@ struct SolarTimeWebService: Apodini.WebService {
 
             let solarTime = SolarTime(latitude: Angle(value: geocode.latitude, unit: .degrees),
                                       longitude: Angle(value: geocode.longitude, unit: .degrees),
-                                      for: date ?? Date())
+                                      for: time ?? Date())
 
             switch event {
             case .sunrise:
@@ -71,12 +71,12 @@ struct SolarTimeWebService: Apodini.WebService {
     struct SolarAngle: Handler {
         @Parameter var latitude: Double
         @Parameter var longitude: Double
-        @Parameter var date: Date?
+        @Parameter var time: Date?
 
-        func handle() -> Angle? {
-            let solarTime = SolarTime(latitude: Angle(value: latitude, unit: .degrees), longitude: Angle(value: longitude, unit: .degrees), for: date ?? Date())
+        func handle() -> Double? {
+            let solarTime = SolarTime(latitude: Angle(value: latitude, unit: .degrees), longitude: Angle(value: longitude, unit: .degrees), for: time ?? Date())
 
-            return solarTime.solarDeclination
+            return solarTime.solarDeclination.converted(to: .degrees).value
         }
     }
 
@@ -91,7 +91,7 @@ struct SolarTimeWebService: Apodini.WebService {
         Group("zenith") {
             SolarDate(event: .zenith)
         }
-        Group("solarDeclination") {
+        Group("declination") {
             SolarAngle()
         }
         Group("duration") {
