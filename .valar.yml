@@ -1,0 +1,7 @@
+project: tim
+service: solartime
+constructor: swift
+ignore:
+- .valar.yml
+- .git
+- .build
