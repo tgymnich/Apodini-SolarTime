@@ -24,7 +24,7 @@
         "repositoryURL": "https://github.com/Apodini/Apodini.git",
         "state": {
           "branch": "develop",
-          "revision": "b5b4be3c9a0f48748b85154d196257bdd76543d6",
+          "revision": "bd7fa003e7188fcc12f7fcacc5cafe33dec18268",
           "version": null
         }
       },
@@ -69,8 +69,8 @@
         "repositoryURL": "https://github.com/vapor/console-kit.git",
         "state": {
           "branch": null,
-          "revision": "7454e839bc5ae0e75c3946d2613e442fd342fe6b",
-          "version": "4.2.4"
+          "revision": "08f36a30e0893e6a52fefbf1c2db4a6bc1288ba2",
+          "version": "4.2.5"
         }
       },
       {
@@ -105,8 +105,8 @@
         "repositoryURL": "https://github.com/vapor/fluent-kit.git",
         "state": {
           "branch": null,
-          "revision": "86ebecdb98981b7a242746209b4335770bf0bd11",
-          "version": "1.10.2"
+          "revision": "7f1a5fe1effeee258ef0012def798e4bad43303d",
+          "version": "1.10.3"
         }
       },
       {
@@ -296,15 +296,6 @@
           "branch": null,
           "revision": "6481dd0b01112d082dd7eb362782126e81964138",
           "version": "1.1.0"
-        }
-      },
-      {
-        "package": "SwifCron",
-        "repositoryURL": "https://github.com/MihaelIsaev/SwifCron.git",
-        "state": {
-          "branch": null,
-          "revision": "effe20321342705e66894d86720c5882e2f4095e",
-          "version": "1.3.1"
         }
       },
       {
