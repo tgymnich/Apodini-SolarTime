@@ -1,6 +1,6 @@
 project: tim
 service: solartime
-constructor: swift
+constructor: vapor
 ignore:
 - .valar.yml
 - .git
