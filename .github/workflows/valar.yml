@@ -1,4 +1,4 @@
-name: "Publish to Valar"
+name: "Deploy to Valar"
 on:
   push:
     branches:    
