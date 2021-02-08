@@ -47,7 +47,7 @@ struct SolarDateRespone: ResponseTransformable, Codable {
         }
 
         if let sunriseDate = solar.sunrise(), let sunsetDate = solar.sunset() {
-            self.hoursOfSunlight = sunriseDate.distance(to: sunsetDate) / 60 / 60
+            self.hoursOfSunlight = sunsetDate.timeIntervalSince1970 -  sunriseDate.timeIntervalSince1970 / 60 / 60
         } else {
             self.hoursOfSunlight = 0
         }
