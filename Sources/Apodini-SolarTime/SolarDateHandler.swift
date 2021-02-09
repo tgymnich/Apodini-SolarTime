@@ -60,6 +60,7 @@ struct SolarDateHandler: Handler {
     @Parameter var latitude: Double?
     @Parameter var longitude: Double?
     @Parameter var date: Date?
+    @Parameter("X-Real-Ip", .http(.header)) var forwardedFor: String?
     @Environment(\.connection) var connection: Connection
 
     func handle() throws -> EventLoopFuture<SolarDateRespone> {
@@ -70,6 +71,20 @@ struct SolarDateHandler: Handler {
                 for: date ?? Date()
             )
             return connection.eventLoop.makeSucceededFuture(SolarDateRespone(solarTime))
+        } else if let forwardedFor = forwardedFor {
+            return client.post(url: "https://geocode.xyz", body: .string("locate=\(forwardedFor)&geoit=json"))
+                .map { $0.body }
+                .unwrap(orError: SolarDateHandlerError.missingGeoResponse )
+                .flatMapThrowing { try $0.getJSONDecodable(GeoResponse.self, at: 0, length: $0.readableBytes) }
+                .unwrap(orError: SolarDateHandlerError.cannotDecodeGeoResponse)
+                .map { georesponse -> SolarDateRespone in
+                    let solarTime = SolarTime(
+                        latitude: Angle(value: georesponse.latitude, unit: .degrees),
+                        longitude: Angle(value: georesponse.longitude, unit: .degrees),
+                        for: date ?? Date()
+                    )
+                    return SolarDateRespone(solarTime)
+                }
         } else if let address = connection.remoteAddress?.ipAddress  {
             return client.post(url: "https://geocode.xyz", body: .string("locate=\(address)&geoit=json"))
                 .map { $0.body }
