@@ -16,9 +16,9 @@ enum SolarDateHandlerError: Swift.Error {
 }
 
 struct SolarDateRespone: ResponseTransformable, Codable {
-    let sunrise: String?
-    let sunset: String?
-    let zenith: String?
+    let sunrise: String
+    let sunset: String
+    let zenith: String
     let currentDeclination: Double
 
     let hoursOfSunlight: Double
