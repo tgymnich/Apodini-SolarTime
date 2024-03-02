@@ -9,6 +9,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
-    - uses: valar/action@v1
+    - uses: valar/action@v2
       with:
         token: ${{ secrets.VALAR_TOKEN }}
